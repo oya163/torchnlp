@@ -4,6 +4,7 @@ from __future__ import print_function
 
 import torch
 from torchtext import data
+from torchtext import vocab
 from torchtext.datasets import SequenceTaggingDataset
 from torchtext.vocab import Vectors, GloVe, CharNGram
 
@@ -33,11 +34,11 @@ class Ingredients(SequenceTaggingDataset):
             test=test, **kwargs)
 
 
-def nyt_ingredients_ner_dataset(batch_size, use_local=False, root='.data/nyt_ingredients_ner', 
+def nyt_ingredients_ner_dataset(batch_size=1, use_local=True, root='./data/nep', 
                           train_file='train.txt', 
-                          validation_file='valid.txt',
+                          validation_file='val.txt',
                           test_file='test.txt',
-                          convert_digits=True):
+                          convert_digits=False):
     """
     nyt_ingredients_ner: New York Times Ingredient tagging dataset
     Extract NYT ingredients dataset using torchtext. Applies GloVe 6B.200d and Char N-gram
@@ -93,9 +94,11 @@ def nyt_ingredients_ner_dataset(batch_size, use_local=False, root='.data/nyt_ing
     logger.info('Test size: %d'%(len(test)))
     
     # Build vocab
+    vec = vocab.Vectors(name='nep2ft.vec', cache='/home/osingh1/nepali-ner/embeddings/fasttext')    
+    
     inputs_char.build_vocab(train.inputs_char, val.inputs_char, test.inputs_char)
     inputs_word.build_vocab(train.inputs_word, val.inputs_word, test.inputs_word, max_size=50000,
-                        vectors=[GloVe(name='6B', dim='200'), CharNGram()])
+                        vectors=vec)
     
     labels.build_vocab(train.labels)
     logger.info('Input vocab size:%d'%(len(inputs_word.vocab)))
