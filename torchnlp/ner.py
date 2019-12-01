@@ -29,10 +29,10 @@ logging.basicConfig(level=logging.INFO)
 Info(__doc__).models(TransformerTagger, BiLSTMTagger).datasets(conll2003_dataset, nyt_ingredients_ner_dataset)
 
 PREFS.defaults(
-    data_root='./.data/conll2003',
-    data_train='eng.train.txt',
-    data_validation='eng.testa.txt',
-    data_test='eng.testb.txt',
+    data_root='./data/nep/1',
+    data_train='train.txt',
+    data_validation='val.txt',
+    data_test='test.txt',
     early_stopping='highest_5_F1'
 )
 

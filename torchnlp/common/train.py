@@ -61,6 +61,8 @@ class Trainer(object):
         self.model = model
         self.hparams = hparams
         self.evaluator = evaluator
+        
+        print(self.model)
 
         self.train_iter = train_iter
         # Disable repetitions

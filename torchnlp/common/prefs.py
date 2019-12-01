@@ -37,5 +37,5 @@ class Prefs(object):
 
 # Add default preferences here
 PREFS = Prefs(
-    overwrite_model_dir = False
+    overwrite_model_dir = True
 )
