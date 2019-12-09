@@ -29,7 +29,7 @@ logging.basicConfig(level=logging.INFO)
 Info(__doc__).models(TransformerTagger, BiLSTMTagger).datasets(conll2003_dataset, nyt_ingredients_ner_dataset)
 
 PREFS.defaults(
-    data_root='./data/nep_v2/1',
+#     data_root='./data/nep_v2/1',
     data_train='train.txt',
     data_validation='val.txt',
     data_test='test.txt',
@@ -44,7 +44,7 @@ conll2003 = partial(conll2003_dataset, 'ner',
                                     validation_file=PREFS.data_validation,
                                     test_file=PREFS.data_test)
 
-nyt_ingredients_ner = partial(nyt_ingredients_ner_dataset)                                  
+nyt_ingredients_ner = partial(nyt_ingredients_ner_dataset, root=PREFS.data_root)                                  
 
 # Hyperparameter configuration for NER tasks
 

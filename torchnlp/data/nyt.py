@@ -34,7 +34,7 @@ class Ingredients(SequenceTaggingDataset):
             test=test, **kwargs)
 
 
-def nyt_ingredients_ner_dataset(batch_size=1, use_local=True, root='./data/nep/1', 
+def nyt_ingredients_ner_dataset(batch_size=1, use_local=True, root=None, 
                           train_file='train.txt', 
                           validation_file='val.txt',
                           test_file='test.txt',
