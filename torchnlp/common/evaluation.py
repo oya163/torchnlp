@@ -20,8 +20,14 @@ class Evaluator(object):
         """
         self.data_iter = data_iter
         self.metrics = metrics or []
+        
+    def tensortosent(self, vocab, tense):
+        '''
+            Returns the corresponding TEXT/TAG of given tensor
+        '''
+        return (vocab.itos[i] for i in tense.cpu().data.numpy()[0])
 
-    def evaluate(self, model):
+    def evaluate(self, model, filename=None):
         """
         Evaluates the model on the given metrics for a dataset.
         Returns: A dict containing all the metrics
@@ -32,16 +38,28 @@ class Evaluator(object):
             m.reset()
 
         total_loss = 0
-
+        input_vocab, _, tag_vocab = model.vocabs
+        
+        if filename:
+            writer = open(filename, 'w+')
+        
         prog_iter = tqdm(self.data_iter, leave=False)
         with torch.no_grad():
             for batch in prog_iter:
                 loss, predictions = model.loss(batch, compute_predictions=True)
+                if filename:
+                    for word, gt, pred in zip(self.tensortosent(input_vocab, batch.inputs_word), self.tensortosent(tag_vocab, batch.labels), self.tensortosent(tag_vocab, predictions)):
+                        if word != '<bos>' and word != '<eos>':
+                            writer.write(word+' '+gt+' '+pred+'\n')
+                
                 for m in self.metrics:
                     m.evaluate(batch, loss, predictions)
                 total_loss += float(loss)
                 
                 prog_iter.set_description('Evaluating')
+                
+                if filename:
+                    writer.write('\n')
             
             results = {'loss': total_loss/len(self.data_iter)}
             for m in self.metrics:

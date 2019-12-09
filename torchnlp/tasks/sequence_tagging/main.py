@@ -96,16 +96,18 @@ def evaluate(task_name, model_cls, dataset_fn, split, checkpoint=-1, use_iob_met
     iter_map = {'train': 0, 'validation': 1, 'test': 2}
     dataset = dataset_fn()
     data_iter = dataset['iters'][iter_map[split]]
+    
+    filename = task_name+'_'+split+'_eval_result.bio'
 
     model, hparams = model_cls.load(task_name, checkpoint)
-
+    
     metrics = [BasicMetrics(output_vocab=model.vocab_tags)]
     if use_iob_metrics:
         metrics += [IOBMetrics(tag_vocab=model.vocab_tags)]
 
     # Setup evaluator on the given dataset
     evaluator = Evaluator(data_iter, *metrics)
-    results = evaluator.evaluate(model)
+    results = evaluator.evaluate(model, filename)
 
     print('{} set evaluation: {}-{}'.format(split, task_name, model.__class__.__name__))
     print(', '.join(['{}={:3.5f}'.format(k, v) for k,v in results.items()]))
