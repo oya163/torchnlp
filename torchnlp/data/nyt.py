@@ -23,7 +23,7 @@ class Ingredients(SequenceTaggingDataset):
     name = 'nyt_ingredients_ner'
 
     @classmethod
-    def splits(cls, fields, root=".data", train="train.txt",
+    def splits(cls, fields, root="./data", train="train.txt",
                validation="valid.txt",
                test="test.txt", **kwargs):
         """Downloads and loads the NYT ingredients NER data in CoNLL format
@@ -94,7 +94,9 @@ def nyt_ingredients_ner_dataset(batch_size=1, use_local=True, root=None,
     logger.info('Test size: %d'%(len(test)))
     
     # Build vocab
-    vec = vocab.Vectors(name='nep2ft.vec', cache='/home/osingh1/nepali-ner/embeddings/fasttext')    
+    #vec = vocab.Vectors(name='embeddings.vec', cache='/home/osingh1/nepali-sa/data/embeddings')    
+    vec = vocab.Vectors(name='nep_english.vec', cache='/home/osingh1/nepali-sa/data/embeddings')    
+    #vec = vocab.Vectors(name='embeddings.vec', cache='/home/osingh1/nepali-sentiment-analysis/data/embeddings/nep2ft')    
     
     inputs_char.build_vocab(train.inputs_char, val.inputs_char, test.inputs_char)
     inputs_word.build_vocab(train.inputs_word, val.inputs_word, test.inputs_word, max_size=50000,
