@@ -29,7 +29,7 @@ logging.basicConfig(level=logging.INFO)
 Info(__doc__).models(TransformerTagger, BiLSTMTagger).datasets(conll2003_dataset, nyt_ingredients_ner_dataset)
 
 PREFS.defaults(
-    data_root='./data/nepsa/1',
+    data_root='./data/nepsa_all/1',
     data_train='train.txt',
     data_validation='val.txt',
     data_test='test.txt',
@@ -70,8 +70,8 @@ def hparams_lstm_ner():
     hparams = hparams_tagging_base()
 
     return hparams.update(
-        embedding_size_char=25,
-        embedding_size_char_per_word=25,
+        embedding_size_char=30,
+        embedding_size_char_per_word=30,
         hidden_size=100,
         learning_rate=0.05,
         learning_rate_decay='noam_step',

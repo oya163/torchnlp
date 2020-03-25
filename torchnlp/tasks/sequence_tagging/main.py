@@ -110,7 +110,7 @@ def evaluate(task_name, model_cls, dataset_fn, split, checkpoint=-1, use_iob_met
     results = evaluator.evaluate(model, filename)
 
     print('{} set evaluation: {}-{}'.format(split, task_name, model.__class__.__name__))
-    print(', '.join(['{}={:3.5f}'.format(k, v) for k,v in results.items()]))
+    print(';'.join(['{};{:3.5f}'.format(k, v) for k,v in results.items()]))
 
 def _run_model_loaded(model, batch):
     predictions = model(batch)

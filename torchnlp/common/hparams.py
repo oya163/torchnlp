@@ -36,9 +36,9 @@ class HParams(object):
 
 def hparams_basic():
     return HParams(
-        batch_size=100,
-        learning_rate=0.2,
-        learning_rate_decay=None,
+        batch_size=8,
+        learning_rate=0.05,
+        learning_rate_decay=0.05,
         optimizer_adam_beta1=0.9,
         optimizer_adam_beta2=0.98,
     )

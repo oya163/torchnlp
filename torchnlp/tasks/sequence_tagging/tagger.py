@@ -145,18 +145,18 @@ class Tagger(Model):
 
 def hparams_tagging_base():
     return HParams(
-        batch_size=100,
+        batch_size=8,
         embedding_size_word=300,
-        embedding_size_char=0, # No char embeddings
-        embedding_size_char_per_word=100,
+        embedding_size_char=30, # No char embeddings
+        embedding_size_char_per_word=30,
         embedding_size_tags=100,
-        hidden_size=128,
-        learning_rate=0.2,
+        hidden_size=100,
+        learning_rate=0.05,
         learning_rate_decay=None,
         max_length=256,
         num_hidden_layers=1,
-        dropout=0.2,
+        dropout=0.5,
         optimizer_adam_beta1=0.9,
         optimizer_adam_beta2=0.98,
-        use_crf=False
+        use_crf=True
     )
