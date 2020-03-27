@@ -24,6 +24,8 @@ from functools import partial
 
 logger = logging.getLogger('main_log')
 
+data_path="./data"
+
 folder_name="nepsa_target"
 log_path = folder_name+".log"
 logging.basicConfig(filename=log_path,level=logging.INFO,filemode='w')
@@ -40,10 +42,7 @@ PREFS.defaults(
     early_stopping='highest_5_F1'
 )
 
-def main():
-    
-    data_path="./data"
-    
+def main():    
     h1 = ner.hparams_lstm_ner()
 
     for i in range(0,5):

@@ -14,7 +14,7 @@ from torchnlp.common.prefs import PREFS
 import sys, os
 import logging
 
-#logger = logging.getLogger(__name__)
+#logger = logging.getLogger(__name__.seqtag)
 logger = logging.getLogger("main_log.seqtag")
 
 
@@ -97,7 +97,7 @@ def evaluate(task_name, model_cls, dataset_fn, split, checkpoint=-1, use_iob_met
     iter_map = {'train': 0, 'validation': 1, 'test': 2}
     dataset = dataset_fn()
     data_iter = dataset['iters'][iter_map[split]]
-    logger.info("Root path = ", PREFS.data_root)
+    logger.info("Root path = {}".format(PREFS.data_root))
     filename = task_name+'_'+split+'_eval_result.bio'
 
     model, hparams = model_cls.load(task_name, checkpoint)
@@ -105,8 +105,6 @@ def evaluate(task_name, model_cls, dataset_fn, split, checkpoint=-1, use_iob_met
     metrics = [BasicMetrics(output_vocab=model.vocab_tags)]
     if use_iob_metrics:
         metrics += [IOBMetrics(tag_vocab=model.vocab_tags)]
-
-    # Setup evaluator on the given dataset
     evaluator = Evaluator(data_iter, *metrics)
     results = evaluator.evaluate(model, filename)
 
