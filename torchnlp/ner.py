@@ -23,8 +23,8 @@ import sys, os
 import logging
 from functools import partial
 
-logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("main_log.ner")
+#logging.basicConfig(level=logging.INFO)
 
 Info(__doc__).models(TransformerTagger, BiLSTMTagger).datasets(conll2003_dataset, nyt_ingredients_ner_dataset)
 

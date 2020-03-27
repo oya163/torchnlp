@@ -7,7 +7,8 @@ from torchtext import data
 
 import numpy as np
 import logging
-logger = logging.getLogger(__name__)
+#logger = logging.getLogger(__name__)
+logger = logging.getLogger("main_log.inputs")
 
 def get_input_processor_words(vocab_word, vocab_char=None, convert_digits=True):
     """

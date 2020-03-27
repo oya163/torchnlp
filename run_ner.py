@@ -19,7 +19,17 @@ from torchnlp.common.info import Info
 
 import sys, os
 import logging
+import logging.config
 from functools import partial
+
+logger = logging.getLogger('main_log')
+log_path = 'ner.log'
+logging.basicConfig(filename=log_path,level=logging.INFO,filemode='w')
+
+fh = logging.FileHandler(log_path)
+formatter = logging.Formatter('%(asctime)s:%(levelname)s:%(name)s:%(message)s')
+fh.setFormatter(formatter)
+logger.addHandler(fh)
 
 PREFS.defaults(
     data_train='train.txt',
@@ -30,11 +40,11 @@ PREFS.defaults(
 
 def main():
     
-    folder_name="nepsa_all"
+    folder_name="nepsa_aspect"
     data_path="./data"
     
     h1 = ner.hparams_lstm_ner()
-    
+
     for i in range(0,5):
         kfold = i+1
         data_root=os.path.join(data_path, folder_name, str(kfold))

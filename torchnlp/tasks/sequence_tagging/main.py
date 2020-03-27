@@ -14,7 +14,8 @@ from torchnlp.common.prefs import PREFS
 import sys, os
 import logging
 
-logger = logging.getLogger(__name__)
+#logger = logging.getLogger(__name__)
+logger = logging.getLogger("main_log.seqtag")
 
 
 # Globals

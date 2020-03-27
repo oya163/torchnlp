@@ -11,7 +11,8 @@ from torchtext.vocab import Vectors, GloVe, CharNGram
 import numpy as np
 import random
 import logging
-logger = logging.getLogger(__name__)
+#logger = logging.getLogger(__name__)
+logger = logging.getLogger('main_log.nyt')
 
 class Ingredients(SequenceTaggingDataset):
 

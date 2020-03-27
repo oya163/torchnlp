@@ -9,7 +9,7 @@ import os
 import glob
 
 import logging
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("main_log.model")
 
 HYPERPARAMS_FILE = 'hyperparams.pt'
 CHECKPOINT_FILE = 'checkpoint-{}.pt'

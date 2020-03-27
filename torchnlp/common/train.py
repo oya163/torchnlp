@@ -14,7 +14,8 @@ from functools import partial
 from collections import deque, defaultdict
 
 import logging
-logger = logging.getLogger(__name__)
+#logger = logging.getLogger(__name__)
+logger = logging.getLogger("main_log.train")
 
 OPTIMIZER_FILE = "optimizer.pt"
 
