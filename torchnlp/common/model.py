@@ -95,7 +95,7 @@ class Model(nn.Module):
         raise NotImplementedError("Must implement loss()")
 
     @classmethod
-    def create(cls, task_name, hparams, overwrite=False, **kwargs):
+    def create(cls, task_name, hparams, overwrite=True, **kwargs):
         """
         Create a new instance of this class. Prepares the model directory
         and saves hyperparams. Derived classes should override this function
