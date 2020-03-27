@@ -97,7 +97,7 @@ def evaluate(task_name, model_cls, dataset_fn, split, checkpoint=-1, use_iob_met
     iter_map = {'train': 0, 'validation': 1, 'test': 2}
     dataset = dataset_fn()
     data_iter = dataset['iters'][iter_map[split]]
-    print("Root path = ", PREFS.data_root)
+    logger.info("Root path = ", PREFS.data_root)
     filename = task_name+'_'+split+'_eval_result.bio'
 
     model, hparams = model_cls.load(task_name, checkpoint)
@@ -110,8 +110,8 @@ def evaluate(task_name, model_cls, dataset_fn, split, checkpoint=-1, use_iob_met
     evaluator = Evaluator(data_iter, *metrics)
     results = evaluator.evaluate(model, filename)
 
-    print('{} set evaluation: {}-{}'.format(split, task_name, model.__class__.__name__))
-    print(';'.join(['{};{:3.5f}'.format(k, v) for k,v in results.items()]))
+    logger.info('{} set evaluation: {}-{}'.format(split, task_name, model.__class__.__name__))
+    logger.info(';'.join(['{};{:3.5f}'.format(k, v) for k,v in results.items()]))
 
 def _run_model_loaded(model, batch):
     predictions = model(batch)

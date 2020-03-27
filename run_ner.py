@@ -23,7 +23,9 @@ import logging.config
 from functools import partial
 
 logger = logging.getLogger('main_log')
-log_path = 'ner.log'
+
+folder_name="nepsa_target"
+log_path = folder_name+".log"
 logging.basicConfig(filename=log_path,level=logging.INFO,filemode='w')
 
 fh = logging.FileHandler(log_path)
@@ -40,7 +42,6 @@ PREFS.defaults(
 
 def main():
     
-    folder_name="nepsa_aspect"
     data_path="./data"
     
     h1 = ner.hparams_lstm_ner()
