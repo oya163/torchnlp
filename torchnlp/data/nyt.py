@@ -25,7 +25,7 @@ class Ingredients(SequenceTaggingDataset):
 
     @classmethod
     def splits(cls, fields, root="./data", train="train.txt",
-               validation="valid.txt",
+               validation="dev.txt",
                test="test.txt", **kwargs):
         """Downloads and loads the NYT ingredients NER data in CoNLL format
         """
@@ -37,7 +37,7 @@ class Ingredients(SequenceTaggingDataset):
 
 def nyt_ingredients_ner_dataset(batch_size=1, use_local=True, root=None, 
                           train_file='train.txt', 
-                          validation_file='val.txt',
+                          validation_file='dev.txt',
                           test_file='test.txt',
                           convert_digits=False):
     """
