@@ -26,7 +26,7 @@ logger = logging.getLogger('main_log')
 
 data_path="./data"
 
-folder_name="nepsa_target"
+folder_name="nepsa_aspect"
 log_path = folder_name+".log"
 logging.basicConfig(filename=log_path,level=logging.INFO,filemode='w')
 
