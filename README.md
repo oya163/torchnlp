@@ -56,6 +56,11 @@ The NER task can be run on any dataset that confirms to the [CoNLL 2003](https:/
 ```
 `eng.testa.txt` is used the validation dataset and `eng.testb.txt` is used as the test dataset.
 
+Easy way to start the program
+You might need to set the datapath in run_ner.py
+
+    python run_ner.py
+
 Start the NER module in the python shell which sets up the imports:
 ```
 python -i -m torchnlp.ner
